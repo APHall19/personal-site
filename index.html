@@ -1,91 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aidan Hall</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
+    :root {
+      --primary: #31d2c4;
+      --secondary: #ff7b00;
+      --accent: #06d6a0;
+      --text-light: #fff;
+      --text-dark: #111;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #111;
+      font-family: 'Aileron', sans-serif;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text-dark);
+      overflow-x: hidden;
     }
     header {
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #eee;
+      position: sticky; top: 0; width: 100%; padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+      z-index: 100;
     }
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #111;
-      font-weight: 600;
-    }
+    .logo { font-size: 1.5rem; font-weight: bold; color: var(--text-light); }
+    .social-icons a { margin-left: 1rem; color: var(--text-light); font-size: 1.2rem; }
+    main { overflow: hidden; }
     .hero {
-      text-align: center;
-      padding: 6rem 2rem;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      background: url('channel_banner.jpeg') center/cover no-repeat;
+      position: relative;
     }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
     }
-    .hero p {
-      max-width: 600px;
+    .hero h1, .hero p, .hero .btn { position: relative; z-index: 1; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--text-light); }
+    .hero p { font-size: 1.2rem; max-width: 600px; color: var(--text-light); }
+    .hero .btn {
+      margin-top: 2rem; padding: .75rem 1.5rem;
+      background: var(--text-light); color: var(--primary);
+      text-decoration: none; font-weight: 500; border-radius: 4px;
+    }
+    section { padding: 6rem 2rem; }
+    .container {
+      background: rgba(255,255,255,0.8);
+      border-radius: 20px;
+      max-width: 1000px;
       margin: 0 auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
-    .section {
       padding: 4rem 2rem;
-      max-width: 800px;
-      margin: 0 auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    footer {
+    h2 { font-size: 2.2rem; text-align: center; margin-bottom: 1rem; }
+    p { font-size: 1.1rem; text-align: center; margin-bottom: 2rem; }
+    /* Services */
+    #services .service-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--secondary);
+      color: var(--text-light);
+      padding: 1.5rem;
+      border-radius: 8px;
       text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      border-top: 1px solid #eee;
+      font-weight: 500;
     }
+    /* YouTube */
+    .youtube-container {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;
+    }
+    .youtube-container img { flex: 1 1 300px; border-radius: 8px; }
+    .youtube-container .text { flex: 2 1 400px; }
+    .youtube-container .btn {
+      margin-top: 1rem; padding: .5rem 1rem;
+      background: var(--primary); color: var(--text-light);
+      text-decoration: none; border-radius: 4px; font-weight: 500;
+    }
+    /* Newsletter */
+    #newsletter form {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;
+    }
+    #newsletter input[type=email] {
+      padding: .75rem; border: none; border-radius: 4px; width: 250px;
+    }
+    #newsletter button {
+      padding: .75rem 1.5rem; background: var(--accent);
+      color: var(--text-light); border: none; border-radius: 4px; font-weight: 500;
+    }
+    /* Gallery */
+    .gallery {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem;
+    }
+    .gallery img { width: 100%; border-radius: 8px; }
+    /* Contact */
+    #contact a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    /* Footer */
+    footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 2rem; max-width: 1000px; margin: 0 auto;
+    }
+    .social-footer a { margin-left: 1rem; color: var(--text-light); font-size: 1.2rem; }
   </style>
 </head>
 <body>
-  <header>
-    <div><strong>Aidan Hall</strong></div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#podcast">Podcast</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <header data-aos="fade-down">
+    <div class="logo">Aidan Hall</div>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Hey, I'm Aidan</h1>
-    <p>I make videos, capture stories, and build things that make people feel. Welcome to my corner of the internet.</p>
-  </section>
+  <main>
+    <section class="hero" data-aos="fade-in">
+      <h1 data-aos="fade-up">Sparking Curiosity, Cultivating Connection</h1>
+      <p data-aos="fade-up" data-aos-delay="150">I’m Aidan, a content creator specializing into YouTube videos and newsletters. Let's collaborate to grow your channel and brand.</p>
+      <a href="#services" class="btn" data-aos="fade-up" data-aos-delay="300">Work With Me</a>
+    </section>
 
-  <section id="about" class="section">
-    <h2>About</h2>
-    <p>I’m a videographer, photographer, and writer based in Los Angeles. I create YouTube videos about systems, identity, and culture, and I help people tell better stories online.</p>
-  </section>
+    <section id="services" data-aos="fade-up">
+      <div class="container">
+        <h2>Services</h2>
+        <div class="service-grid">
+          <div class="service-card" data-aos="fade-up">Consulting & Strategy</div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="100">Video Production</div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="200">Channel Growth Workshops</div>
+        </div>
+      </div>
+    </section>
 
-  <section id="podcast" class="section">
-    <h2>Podcast</h2>
-    <p>Coming soon: deep-dive convos with people doing cool, meaningful work. You’ll be able to listen here or wherever you get your podcasts.</p>
-  </section>
+    <section id="youtube" data-aos="fade-up">
+      <div class="container">
+        <h2>YouTube Showcase</h2>
+        <div class="youtube-container">
+          <img src="youtube_screenshot.jpeg" alt="YouTube screenshot">
+          <div class="text">
+            <p>Check out my latest videos for in-depth tutorials, behind-the-scenes looks, and production tips.</p>
+            <a href="#" class="btn">View Channel</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <p>Say hi: <a href="mailto:hello@aidanhall.com">hello@aidanhall.com</a></p>
-  </section>
+    <section id="newsletter" data-aos="fade-up">
+      <div class="container">
+        <h2>Subscribe to My Newsletter</h2>
+        <p>Get weekly insights and lessons from my journey as a creator.</p>
+        <form>
+          <input type="email" placeholder="Your email address">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Aidan Hall. All rights reserved.</p>
+    <section id="gallery" data-aos="fade-up">
+      <div class="container gallery">
+        <h2>Gallery</h2>
+        <img src="gallery1.jpeg" alt="Gallery image">
+        <img src="gallery2.jpeg" alt="Gallery image">
+        <img src="gallery3.jpeg" alt="Gallery image">
+      </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Email me at <a href="mailto:hello@aidanhall.com">hello@aidanhall.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer data-aos="fade-up">
+    <div>&copy; 2025 Aidan Hall</div>
+    <div class="social-footer">
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800, once: true });</script>
 </body>
 </html>
