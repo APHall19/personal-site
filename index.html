@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aidan Hall</title>
   <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -19,18 +19,18 @@
     body {
       font-family: 'Aileron', sans-serif;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--text-dark);
+      color: var(--text-light);
       overflow-x: hidden;
     }
     header {
       position: sticky; top: 0; width: 100%; padding: 1rem 2rem;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
       z-index: 100;
     }
     .logo { font-size: 1.5rem; font-weight: bold; color: var(--text-light); }
     .social-icons a { margin-left: 1rem; color: var(--text-light); font-size: 1.2rem; }
-    main { overflow: hidden; }
+    main { margin-top: 0; }
     .hero {
       min-height: 100vh; display: flex; flex-direction: column;
       justify-content: center; align-items: center; text-align: center;
@@ -40,68 +40,76 @@
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+      background: rgba(0,0,0,0.5);
     }
-    .hero h1, .hero p, .hero .btn { position: relative; z-index: 1; }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--text-light); }
-    .hero p { font-size: 1.2rem; max-width: 600px; color: var(--text-light); }
+    .hero h1, .hero p, .hero .btn {
+      position: relative; z-index: 1;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; max-width: 600px; }
     .hero .btn {
-      margin-top: 2rem; padding: .75rem 1.5rem;
+      margin-top: 2rem; padding: 0.75rem 1.5rem;
       background: var(--text-light); color: var(--primary);
       text-decoration: none; font-weight: 500; border-radius: 4px;
     }
-    section { padding: 6rem 2rem; }
-    .container {
-      background: rgba(255,255,255,0.8);
-      border-radius: 20px;
+    section {
+      padding: 6rem 2rem;
+    }
+    .content {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 4rem 2rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     h2 { font-size: 2.2rem; text-align: center; margin-bottom: 1rem; }
     p { font-size: 1.1rem; text-align: center; margin-bottom: 2rem; }
     /* Services */
-    #services .service-grid {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem;
+    #services {
+      /* no background: transparent */
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
     }
     .service-card {
-      background: var(--secondary);
-      color: var(--text-light);
-      padding: 1.5rem;
-      border-radius: 8px;
+      /* remove background */
+      padding: 1rem;
       text-align: center;
       font-weight: 500;
+      /* subtle bottom border */
+      border-bottom: 2px solid var(--text-light);
     }
-    /* YouTube */
-    .youtube-container {
+    /* YouTube Showcase */
+    #youtube .youtube-container {
       display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;
     }
     .youtube-container img { flex: 1 1 300px; border-radius: 8px; }
     .youtube-container .text { flex: 2 1 400px; }
     .youtube-container .btn {
       margin-top: 1rem; padding: .5rem 1rem;
-      background: var(--primary); color: var(--text-light);
+      background: var(--text-light); color: var(--primary);
       text-decoration: none; border-radius: 4px; font-weight: 500;
     }
     /* Newsletter */
+    #newsletter { /* transparent */ }
     #newsletter form {
       display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;
     }
     #newsletter input[type=email] {
-      padding: .75rem; border: none; border-radius: 4px; width: 250px;
+      padding: .75rem; border: 2px solid var(--text-light);
+      border-radius: 4px; width: 250px;
+      background: transparent; color: var(--text-light);
     }
     #newsletter button {
-      padding: .75rem 1.5rem; background: var(--accent);
-      color: var(--text-light); border: none; border-radius: 4px; font-weight: 500;
+      padding: .75rem 1.5rem; background: var(--text-light);
+      color: var(--secondary); border: none; border-radius: 4px; font-weight: 500;
     }
     /* Gallery */
     .gallery {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem;
     }
     .gallery img { width: 100%; border-radius: 8px; }
     /* Contact */
-    #contact a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    #contact a { color: var(--text-light); text-decoration: none; font-weight: 500; }
     /* Footer */
     footer {
       display: flex; justify-content: space-between; align-items: center;
@@ -123,23 +131,23 @@
   <main>
     <section class="hero" data-aos="fade-in">
       <h1 data-aos="fade-up">Sparking Curiosity, Cultivating Connection</h1>
-      <p data-aos="fade-up" data-aos-delay="150">I’m Aidan, a content creator specializing into YouTube videos and newsletters. Let's collaborate to grow your channel and brand.</p>
+      <p data-aos="fade-up" data-aos-delay="150">I’m Aidan, a content creator specializing in YouTube videos and newsletters. Let's collaborate to grow your channel and brand.</p>
       <a href="#services" class="btn" data-aos="fade-up" data-aos-delay="300">Work With Me</a>
     </section>
 
     <section id="services" data-aos="fade-up">
-      <div class="container">
+      <div class="content">
         <h2>Services</h2>
         <div class="service-grid">
-          <div class="service-card" data-aos="fade-up">Consulting & Strategy</div>
-          <div class="service-card" data-aos="fade-up" data-aos-delay="100">Video Production</div>
-          <div class="service-card" data-aos="fade-up" data-aos-delay="200">Channel Growth Workshops</div>
+          <div class="service-card">Consulting & Strategy</div>
+          <div class="service-card">Video Production</div>
+          <div class="service-card">Channel Growth Workshops</div>
         </div>
       </div>
     </section>
 
     <section id="youtube" data-aos="fade-up">
-      <div class="container">
+      <div class="content">
         <h2>YouTube Showcase</h2>
         <div class="youtube-container">
           <img src="youtube_screenshot.jpeg" alt="YouTube screenshot">
@@ -152,7 +160,7 @@
     </section>
 
     <section id="newsletter" data-aos="fade-up">
-      <div class="container">
+      <div class="content">
         <h2>Subscribe to My Newsletter</h2>
         <p>Get weekly insights and lessons from my journey as a creator.</p>
         <form>
@@ -163,7 +171,7 @@
     </section>
 
     <section id="gallery" data-aos="fade-up">
-      <div class="container gallery">
+      <div class="content gallery">
         <h2>Gallery</h2>
         <img src="gallery1.jpeg" alt="Gallery image">
         <img src="gallery2.jpeg" alt="Gallery image">
@@ -172,7 +180,7 @@
     </section>
 
     <section id="contact" data-aos="fade-up">
-      <div class="container">
+      <div class="content">
         <h2>Contact</h2>
         <p>Email me at <a href="mailto:hello@aidanhall.com">hello@aidanhall.com</a></p>
       </div>
